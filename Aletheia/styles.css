@@ -1,0 +1,405 @@
+/* =================================================================
+   TABLE OF CONTENTS
+   1.  GLOBAL STYLES & VARIABLES
+   2.  CORE LAYOUT & APP STRUCTURE
+   3.  SLIDING PANELS (ONLINE USERS & SETTINGS)
+   4.  HEADER & NAVIGATION
+   5.  CHAT & MESSAGE COMPONENTS
+   6.  FORMS & INPUTS (CHAT, AUTH, SETTINGS)
+   7.  BUTTONS
+   8.  UTILITY & MISCELLANEOUS (SCROLLBAR, ERRORS)
+   ================================================================= */
+
+/* =================================================================
+   1. GLOBAL STYLES & VARIABLES
+   ================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    --background: #1e1e2e;
+    --surface: #27293d;
+    --text: #cdd6f4;
+    --primary: #8c78e9;
+    --subtle-text: #89b4fa;
+    --error: #f38ba8;
+    --error-bg: rgba(243, 139, 168, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevents body scrollbars */
+}
+
+/* =================================================================
+   2. CORE LAYOUT & APP STRUCTURE
+   ================================================================= */
+.main-container {
+    height: 100vh;
+    transition: margin-left 0.4s ease, margin-right 0.4s ease;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--surface);
+    border-left: 1px solid #363a4f;
+    border-right: 1px solid #363a4f;
+}
+
+/* =================================================================
+   3. SLIDING PANELS (ONLINE USERS & SETTINGS)
+   ================================================================= */
+/* --- Common Panel Styles --- */
+.online-users-panel,
+.settings-panel {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    background-color: var(--background);
+    z-index: 1000;
+}
+
+.online-users-panel iframe,
+.settings-panel iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* --- Online Users Panel (Left) --- */
+.online-users-panel {
+    left: -200px; /* MODIFIED: Was -240px */
+    width: 200px;  /* MODIFIED: Was 240px */
+    border-right: 1px solid #363a4f;
+    transition: left 0.4s ease;
+}
+
+#users-toggle:checked ~ .main-container {
+    margin-left: 200px; /* MODIFIED: Was 240px */
+}
+
+#users-toggle:checked ~ .online-users-panel {
+    left: 0;
+}
+
+/* --- Settings Panel (Right) --- */
+.settings-panel {
+    right: -320px; /* Start off-screen */
+    width: 320px; /* Reduced width */
+    border-left: 1px solid #363a4f;
+    padding: 1rem;
+    transition: right 0.4s ease;
+}
+
+#settings-toggle:checked ~ .main-container {
+    margin-right: 320px; /* Match new width */
+}
+
+#settings-toggle:checked ~ .settings-panel {
+    right: 0;
+}
+/* =================================================================
+   4. HEADER & NAVIGATION
+   ================================================================= */
+header {
+    background-color: rgba(18, 18, 25, 0.5);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #363a4f;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+.header-side {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1; /* Make sides expand to help center the title */
+}
+
+.header-side:last-child {
+    justify-content: flex-end; /* Align right-side content to the end */
+}
+
+.header-center {
+    flex: 2;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: inline-block;
+}
+
+/* =================================================================
+   5. CHAT & MESSAGE COMPONENTS
+   ================================================================= */
+.messages-frame {
+    flex: 1 1 auto; /* Allows this frame to grow and fill available space */
+    width: 100%;
+    background-color: var(--surface);
+}
+
+.message {
+    display: flex;
+    align-items: baseline;
+    line-height: 1.6;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(108, 112, 134, 0.1);
+}
+
+.message:last-child {
+    border-bottom: none;
+}
+
+.message .time {
+    color: #6c7086;
+    font-size: 0.8rem;
+    margin-right: 0.75rem;
+}
+
+.message .user {
+    font-weight: 700;
+    margin-right: 0.5rem;
+}
+
+.message .content {
+    color: var(--text);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+.mention {
+    background-color: rgba(140, 120, 233, 0.3);
+    color: var(--primary);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* =================================================================
+   6. FORMS & INPUTS (CHAT, AUTH, SETTINGS)
+   ================================================================= */
+.form-frame {
+    flex-shrink: 0; /* Prevent this frame from shrinking */
+    width: 100%;
+    height: 95px;
+    border-top: 1px solid #363a4f;
+}
+
+.message-form {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.message-form input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #363a4f;
+    border-radius: 8px;
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.message-form input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(140, 120, 233, 0.3);
+}
+
+/* --- Auth Page Forms --- */
+.auth-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 2.5rem;
+    background: var(--surface);
+    border-radius: 12px;
+    border: 1px solid #363a4f;
+}
+
+.auth-container h1 {
+    text-align: center;
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.auth-container .error-message {
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(243, 139, 168, 0.2);
+    border-bottom: 1px solid rgba(243, 139, 168, 0.2);
+}
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container input[type="text"],
+.auth-container input[type="password"] {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #363a4f;
+    border-radius: 8px;
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-container input[type="text"]:focus,
+.auth-container input[type="password"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(140, 120, 233, 0.3);
+}
+
+.auth-container button {
+    color: #FFF;
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.auth-container button:hover {
+    background-color: #a698ec;
+    border-color: #a698ec;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.auth-container p {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--subtle-text);
+}
+
+.auth-container p a {
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.auth-container p a:hover {
+    text-decoration: underline;
+}
+
+/* =================================================================
+   7. BUTTONS
+   ================================================================= */
+.button {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.button:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.settings-button, .users-toggle-button {
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    line-height: 1; /* Normalize line height for icon buttons */
+}
+
+.rot-chat-button {
+    background-color: rgba(140, 120, 233, 0.2);
+    border: 1px solid rgba(140, 120, 233, 0.5);
+    color: var(--primary);
+}
+
+.logout-button {
+    background-color: rgba(243, 139, 168, 0.1);
+    border: 1px solid rgba(243, 139, 168, 0.3);
+    color: var(--error);
+}
+
+/* =================================================================
+   8. UTILITY & MISCELLANEOUS (SCROLLBAR, ERRORS)
+   ================================================================= */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--surface);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #a698ec;
+}
+
+.error-message {
+    color: var(--error);
+    background: var(--error-bg);
+    padding: 1rem 1.5rem;
+    margin: 0;
+    text-align: center;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(243, 139, 168, 0.2);
+}
+
+
+/* In styles.css (or similar stylesheet linked in index.php) */
+
+/* Add this to your main stylesheet (e.g., styles.css) */
+
+.notice-box {
+    /* Red/Warning styling */
+    background-color: #ffcccc; /* Light red/pink background */
+    border: 2px solid #cc0000;  /* Dark red border */
+    color: #cc0000;             /* Dark red text */
+    
+    /* Big text box */
+    padding: 12px;              
+    margin: 10px 0;             
+    font-weight: bold;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    line-height: 1.4;
+    font-size: 1.1em;
+}

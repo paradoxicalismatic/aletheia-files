@@ -1,0 +1,31 @@
+/* forest.css */
+:root {
+    --background: #1a201b;
+    --surface: #252e27;
+    --text: #d1e0d5;
+    --primary: #4caf50;
+    --subtle-text: #7a947f;
+    --error: #ef9a9a;
+    --error-bg: rgba(239, 154, 154, 0.1);
+}
+body {
+    scrollbar-color: var(--primary) var(--surface);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #66bb6a;
+}
+.message-form input:focus {
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+}
+.button {
+    background-color: rgba(76, 175, 80, 0.15);
+    border-color: rgba(76, 175, 80, 0.4);
+    color: var(--primary);
+}
+.button:hover {
+    background-color: var(--primary);
+    color: var(--background);
+}

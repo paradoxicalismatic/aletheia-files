@@ -1,0 +1,72 @@
+/* =================================================================
+   DROPDOWN MENU STYLES
+   ================================================================= */
+
+/* --- The container for the dropdown, now a <details> element --- */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* --- The main button, now a <summary> element --- */
+.dropdown-button {
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    line-height: 1; /* Normalize line height for icon buttons */
+    list-style: none; /* Remove default marker */
+    cursor: pointer;
+}
+/* --- Remove default marker in Webkit browsers --- */
+.dropdown-button::-webkit-details-marker {
+    display: none;
+}
+
+/* --- The dropdown content (hidden by default) --- */
+.dropdown-content {
+    /* The <details> element handles showing/hiding automatically */
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: var(--surface);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+    border: 1px solid #363a4f;
+    border-radius: 8px;
+    z-index: 100;
+    margin-top: 8px; /* Adds space between button and menu */
+    overflow: hidden; /* Ensures child elements conform to border-radius */
+}
+
+/* --- Styling for links and forms inside the dropdown --- */
+.dropdown-content a,
+.dropdown-content form {
+    margin: 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+/* UPDATED: Added 'label' to this selector */
+.dropdown-content a,
+.dropdown-content button,
+.dropdown-content label {
+    color: var(--text);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background: none;
+    border: none;
+    width: 100%;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+/* UPDATED: Added 'label' to this selector */
+.dropdown-content a:hover,
+.dropdown-content button:hover,
+.dropdown-content label:hover {
+    background-color: var(--background);
+    color: var(--primary);
+}

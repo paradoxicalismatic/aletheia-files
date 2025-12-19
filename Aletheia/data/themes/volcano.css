@@ -1,0 +1,44 @@
+/* volcano.css */
+:root {
+    /* A dark palette with red and amber accents */
+    --background: #111111;
+    --surface: #1c1c1c;
+    --text: #e0e0e0;
+    --primary: #e53935;      /* Strong Red */
+    --subtle-text: #ffa726;   /* Amber/Orange */
+    --error: #e53935;
+    --error-bg: rgba(229, 57, 53, 0.15);
+}
+
+/* Reduce roundness for a sharper, more technical look */
+.button, .auth-container, .message-form input, textarea, blockquote, .auth-container input[type="text"], .auth-container input[type="password"] {
+    border-radius: 4px;
+}
+
+/* Style for quoted messages to match the screenshot */
+blockquote {
+    background-color: #423017; /* Dark amber background */
+    color: var(--subtle-text);
+    border-left: 3px solid var(--subtle-text);
+    margin: 0.5em 0;
+    padding: 0.75em 1em;
+}
+
+/* Themed buttons */
+.button {
+    background-color: rgba(229, 57, 53, 0.1);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+.button:hover {
+    background-color: var(--primary);
+    color: var(--background);
+}
+
+/* Themed form inputs */
+textarea[name="message"]:focus,
+.auth-container input:focus,
+.message-form input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.4);
+}

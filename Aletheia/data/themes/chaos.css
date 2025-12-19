@@ -1,0 +1,40 @@
+/* Chaos Theme */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+:root {
+    --background: #ffcc00; /* Bright Yellow */
+    --surface: #ffffff;    /* White */
+    --text: #000000;       /* Black */
+    --primary: #ff3366;    /* Hot Pink */
+    --subtle-text: #3399ff; /* Bright Blue */
+    --error: #ff0000;      /* Red */
+    --error-bg: rgba(255, 0, 0, 0.2);
+}
+
+body, button, input, select, textarea {
+    font-family: 'Comic Neue', cursive;
+    animation: shake 0.5s infinite;
+}
+
+.message, .button, .auth-container, .user-list-item, .rule-item {
+    transform: rotate(calc(var(--random-rot, 0) * 1deg));
+    transition: transform 0.2s ease;
+}
+
+.message:hover, .button:hover {
+    transform: scale(1.1) rotate(calc(var(--random-rot, 0) * 1.5deg));
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}

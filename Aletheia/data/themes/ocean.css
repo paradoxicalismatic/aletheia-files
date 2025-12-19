@@ -1,0 +1,31 @@
+/* ocean.css */
+:root {
+    --background: #0f1c2e;
+    --surface: #1a2a42;
+    --text: #c0d3f0;
+    --primary: #38a1f0;
+    --subtle-text: #6883b4;
+    --error: #e57373;
+    --error-bg: rgba(229, 115, 115, 0.1);
+}
+body {
+    scrollbar-color: var(--primary) var(--surface);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #62baff;
+}
+.message-form input:focus {
+    box-shadow: 0 0 0 3px rgba(56, 161, 240, 0.3);
+}
+.button {
+    background-color: rgba(56, 161, 240, 0.15);
+    border-color: rgba(56, 161, 240, 0.4);
+    color: var(--primary);
+}
+.button:hover {
+    background-color: var(--primary);
+    color: var(--background);
+}

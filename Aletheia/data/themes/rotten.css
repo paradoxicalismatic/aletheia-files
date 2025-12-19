@@ -1,0 +1,111 @@
+/* Rotten Core Theme */
+
+/* --- Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+
+:root {
+    /* --- Color Palette --- */
+    --background: #1a1a0f; /* Murky dark green */
+    --surface: #2b2a1a;   /* Muddy brown/green */
+    --primary: #8cff00;   /* Radioactive lime green */
+    --secondary: #d97706; /* Rusty orange */
+    --text: #d8d8c0;      /* Dirty beige/off-white */
+    --subtle-text: #6b705b; /* Muted green-gray */
+    --error: #b91c1c;     /* Deep blood red */
+    
+    /* --- Font --- */
+    --font-family: 'Rubik Glitch', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    text-shadow: 0 0 6px rgba(140, 255, 0, 0.4); /* Sickly green glow */
+    background-image: 
+        linear-gradient(rgba(26, 26, 15, 0.95), rgba(26, 26, 15, 0.95)),
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 1px, transparent 1px, transparent 3px);
+    background-size: 100% 100%, 100% 3px;
+}
+
+/* --- Component Styling --- */
+.button, button {
+    background-color: var(--surface);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 8px rgba(140, 255, 0, 0.2);
+    border-radius: 0;
+}
+
+.button:hover, button:hover {
+    background-color: var(--primary);
+    color: #000;
+    box-shadow: 0 0 12px rgba(140, 255, 0, 0.6);
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    font-family: var(--font-family);
+    background-color: #000;
+    border: 1px solid var(--primary);
+    color: var(--text);
+    caret-color: var(--primary);
+    border-radius: 0;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    outline: 1px solid var(--secondary);
+    box-shadow: 0 0 10px rgba(217, 119, 6, 0.5);
+}
+
+.dropdown-content {
+    background-color: var(--background);
+    border: 1px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    border-radius: 0;
+}
+
+.dropdown-content a,
+.dropdown-content button,
+.dropdown-content label {
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover,
+.dropdown-content label:hover {
+    background-color: var(--primary);
+    color: #000;
+}
+
+.message-wrapper {
+    border-bottom: 1px solid var(--primary) !important;
+    opacity: 0.9;
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
+}
+
+.reply-quote {
+    border-left: 3px solid var(--secondary) !important;
+    background-color: #000;
+}
+
+/* --- FIX: Settings Panel Layout --- */
+/* This stacks the label and control vertically to prevent overflow */
+.settings-form .setting-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+/* Apply full width only to labels and textareas, not all elements */
+.settings-form .setting-wrapper > label,
+.settings-form .setting-wrapper > textarea {
+    width: 100%;
+    text-align: left;
+}
