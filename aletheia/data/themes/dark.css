@@ -1,0 +1,13 @@
+/* dark.css */
+:root {
+    --background: #121212;
+    --surface: #1e1e1e;
+    --text: #e0e0e0;
+    --primary: #bb86fc;
+    --subtle-text: #a0a0a0;
+    --error: #cf6679;
+    --error-bg: rgba(207, 102, 121, 0.1);
+}
+.message-form input:focus {
+    box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.25);
+}

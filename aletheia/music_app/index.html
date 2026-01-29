@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundWave</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-wrapper">
+        <nav class="top-nav">
+            <div class="nav-left">
+                <a href="/" data-link class="logo">SOUNDWAVE</a>
+                <a href="/" data-link class="nav-link">Home</a>
+                <a href="/liked" data-link class="nav-link">Liked</a>
+                <a href="/playlists" data-link class="nav-link">Playlists</a>
+            </div>
+            <div class="nav-center">
+                <input type="search" id="search-bar" placeholder="Search for tracks...">
+            </div>
+            <div class="nav-right">
+                <div class="theme-toggle" id="theme-toggle">☀️</div>
+                <button class="logout-btn" id="logout-btn">Logout</button>
+            </div>
+        </nav>
+
+        <main class="main-content" id="main-content">
+            </main>
+
+        <footer class="player-bar" id="player-bar">
+            <audio id="audio-player"></audio>
+            <div class="player-progress">
+                <span id="current-time">0:00</span>
+                <input type="range" id="progress-bar" value="0" step="1">
+                <span id="duration">0:00</span>
+            </div>
+            <div class="player-controls">
+                <button class="control-btn" id="shuffle-btn"><i class="fas fa-random"></i></button>
+                <button class="control-btn" id="prev-btn"><i class="fas fa-step-backward"></i></button>
+                <button class="control-btn play" id="play-pause-btn"><i class="fas fa-play"></i></button>
+                <button class="control-btn" id="next-btn"><i class="fas fa-step-forward"></i></button>
+                <div class="track-info">
+                    <img src="https://placehold.co/40x40/2a2a2a/ccc?text=S" id="player-artwork" alt="artwork">
+                    <div>
+                        <p id="player-title">Select a track</p>
+                        <small id="player-artist">SoundWave</small>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="modal-overlay" class="hidden"></div>
+    <div id="playlist-modal" class="modal hidden">
+        <h3 id="playlist-modal-title">New Playlist</h3>
+        <form id="playlist-form">
+            <input type="hidden" id="playlist-id-input">
+            <input type="text" id="playlist-name-input" placeholder="My awesome playlist" required>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" id="cancel-playlist-modal">Cancel</button>
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </div>
+    <div id="add-to-playlist-modal" class="modal hidden">
+        <h3>Add to playlist</h3>
+        <div id="modal-playlist-list"></div>
+        <div class="modal-actions">
+            <button type="button" class="btn-secondary" id="cancel-add-song-modal">Close</button>
+        </div>
+    </div>
+    <div id="context-menu" class="context-menu hidden">
+        <ul>
+            <li data-action="rename">Rename</li>
+            <li data-action="delete" class="danger">Delete</li>
+        </ul>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+/* Webcore Theme */
+
+/* --- Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    /* --- Color Palette --- */
+    --background: #0d0221; /* Deep space blue */
+    --surface: #1a0a3d;   /* Slightly lighter purple/blue */
+    --primary: #00f0ff;   /* Bright neon cyan */
+    --secondary: #ff00f0; /* Vibrant magenta */
+    --text: #c8f5ff;      /* Light cyan-tinted white */
+    --subtle-text: #6b7a99; /* Muted blue-gray */
+    --error: #ff4d4d;     /* Neon red */
+    
+    /* --- Font --- */
+    --font-family: 'VT323', monospace;
+}
+
+body {
+    font-family: var(--font-family);
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.3); /* Subtle cyan glow */
+    background-image: 
+        linear-gradient(rgba(13, 2, 33, 0.95), rgba(13, 2, 33, 0.95)),
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
+    background-size: 100% 100%, 100% 2px;
+}
+
+/* --- Component Styling --- */
+.button, button {
+    background-color: var(--surface);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+}
+
+.button:hover, button:hover {
+    background-color: var(--primary);
+    color: var(--background);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    font-family: var(--font-family);
+    background-color: #000;
+    border: 1px solid var(--primary);
+    color: var(--text);
+    caret-color: var(--primary);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    outline: 1px solid var(--secondary);
+    box-shadow: 0 0 10px rgba(255, 0, 240, 0.5);
+}
+
+.dropdown-content {
+    background-color: var(--background);
+    border: 1px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-content a,
+.dropdown-content button,
+.dropdown-content label {
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover,
+.dropdown-content label:hover {
+    background-color: var(--primary);
+    color: var(--background);
+}
+
+.message-wrapper {
+    border-bottom: 1px dashed var(--primary) !important;
+    opacity: 0.8;
+}
+
+.reply-quote {
+    border-left: 3px solid var(--secondary) !important;
+}
+
+/* --- FIX: Settings Panel Layout --- */
+/* This stacks the label and control vertically to prevent overflow */
+.settings-form .setting-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.settings-form .setting-wrapper > * {
+    width: 100%; /* Make label and control take full width */
+    text-align: left;
+}
+
+.settings-form .setting-wrapper select,
+.settings-form .setting-wrapper input[type="color"] {
+    width: auto; /* Allow select and color picker to size naturally */
+    max-width: 100%;
+}

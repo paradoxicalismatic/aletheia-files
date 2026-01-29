@@ -1,0 +1,373 @@
+/* styles.css */
+:root {
+  --background-color: #ffffff;
+  --text-color: #333;
+  --card-bg: #f9f9f9;
+  --primary-color: #ff5500;
+  --border-color: #f0f0f0;
+  --nav-bg: #ffffff;
+  --player-bg: #f2f2f2;
+  --hover-bg: #f2f2f2;
+}
+
+[data-theme='dark'] {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --card-bg: #181818;
+  --border-color: #2a2a2a;
+  --nav-bg: #1f1f1f;
+  --player-bg: #1f1f1f;
+  --hover-bg: #2a2a2a;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  transition: background-color 0.3s, color 0.3s;
+  padding-bottom: 80px; /* Space for the player bar */
+}
+
+/* --- Login/Register Page Specific Styles --- */
+.form-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.form-container {
+  background-color: var(--card-bg);
+  padding: 2rem 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid var(--border-color);
+}
+.form-container h1 { text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 1rem;
+}
+.btn {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+.btn:hover { background-color: #e64a00; }
+.form-switch { text-align: center; margin-top: 1.5rem; }
+.form-switch a { color: var(--primary-color); text-decoration: none; }
+
+/* --- Main App Layout --- */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 60px;
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.nav-left, .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+.logo { font-weight: bold; font-size: 1.5rem; color: var(--primary-color); text-decoration: none; }
+.nav-link { color: var(--text-color); text-decoration: none; }
+.nav-link.active { color: var(--primary-color); }
+.theme-toggle { cursor: pointer; font-size: 1.5rem; }
+.logout-btn { background: none; border: 1px solid var(--text-color); color: var(--text-color); padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+
+.main-content {
+  padding: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* --- Track List --- */
+.track-list { display: grid; gap: 1rem; }
+.track-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+.track-item:hover { background-color: var(--hover-bg); }
+.track-item-artwork { font-size: 1.5rem; margin-right: 1rem; color: #888; }
+.track-item-info { flex-grow: 1; }
+.track-item-title { margin: 0; font-weight: 500; }
+.track-item-artist { margin: 0; color: #888; }
+.track-play-btn { background: none; border: none; color: var(--primary-color); font-size: 1.5rem; cursor: pointer; }
+
+/* --- Player Bar --- */
+.player-bar {
+  position: fixed;
+  bottom: -100%; /* Initially hidden */
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: var(--player-bg);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: bottom 0.3s ease-in-out;
+}
+.player-bar.visible { bottom: 0; }
+.player-progress { display: flex; align-items: center; width: 80%; gap: 1rem; }
+#progress-bar { flex-grow: 1; -webkit-appearance: none; appearance: none; height: 4px; background: #ccc; border-radius: 2px; cursor: pointer; }
+#progress-bar::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; background: var(--primary-color); border-radius: 50%; cursor: pointer; }
+.player-controls { display: flex; align-items: center; gap: 1.5rem; }
+.control-btn { background: none; border: none; color: var(--text-color); font-size: 1.2rem; cursor: pointer; }
+.control-btn.play { font-size: 2rem; color: var(--primary-color); }
+.track-info { display: flex; align-items: center; gap: 0.75rem; position: absolute; left: 20px; }
+.track-info img { width: 40px; height: 40px; border-radius: 4px; }
+.track-info p, .track-info small { margin: 0; }
+.track-info p { font-weight: 500; }
+.track-info small { color: #888; }
+
+/* --- New styles for Like Button --- */
+
+.track-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto; /* Pushes controls to the right */
+}
+
+.like-btn {
+    background: none;
+    border: none;
+    color: #888; /* Default color for the heart */
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+/* Style for when a song is liked */
+.track-item.liked .like-btn,
+.like-btn:hover {
+    color: var(--primary-color); /* The heart turns orange when liked or hovered */
+}
+
+/* Remove default artwork icon to keep it clean */
+.track-item-artwork {
+    display: none;
+}
+
+/* --- New styles to add to styles.css --- */
+
+/* Search Bar Styles */
+.nav-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    padding: 0 1.5rem;
+}
+
+#search-bar {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+}
+
+#search-bar:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Shuffle Button Active State */
+#shuffle-btn.active {
+    color: var(--primary-color);
+}
+
+/* --- New Playlist, Modal, and Context Menu Styles --- */
+
+/* Header with Button */
+.header-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.header-with-button .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    margin-top: 0;
+}
+
+/* Playlist Grid */
+.playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+.playlist-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: background-color 0.2s;
+    cursor: context-menu;
+}
+.playlist-card:hover {
+    background-color: var(--hover-bg);
+}
+.playlist-card a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+.playlist-card-artwork {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    color: #666;
+}
+.playlist-card-name {
+    font-weight: 500;
+    padding: 0.75rem;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Playlist View Header */
+.playlist-header {
+    margin-bottom: 2rem;
+}
+#playlist-name-heading {
+    margin: 0;
+    padding: 2px 5px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+}
+#playlist-name-heading:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+#playlist-song-count {
+    margin: 0.5rem 0 0;
+    color: #888;
+}
+
+/* Add to Playlist & Remove from Playlist Buttons */
+.add-to-playlist-btn, .remove-song-btn {
+    background: none; border: none; font-size: 1rem; color: #888; cursor: pointer;
+}
+.add-to-playlist-btn:hover, .remove-song-btn:hover {
+    color: var(--text-color);
+}
+.remove-song-btn { color: #a85252; } /* Make remove button reddish */
+
+/* --- Modals --- */
+#modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+}
+.modal {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--card-bg);
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    z-index: 2001;
+    width: 90%;
+    max-width: 400px;
+}
+.modal h3 { margin-top: 0; }
+.modal input[type="text"] {
+    width: 100%; padding: 0.75rem; box-sizing: border-box; border-radius: 4px; border: 1px solid var(--border-color);
+    background-color: var(--background-color); color: var(--text-color);
+}
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid #888;
+    color: var(--text-color);
+    padding: 0.7rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.hidden { display: none; }
+
+/* Modal for Add to Playlist */
+#modal-playlist-list .modal-playlist-item {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+#modal-playlist-list .modal-playlist-item:hover {
+    background-color: var(--hover-bg);
+}
+
+/* --- Context Menu --- */
+.context-menu {
+    position: absolute;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 3000;
+}
+.context-menu ul {
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+}
+.context-menu ul li {
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+}
+.context-menu ul li:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+.context-menu ul li.danger {
+    color: #d9534f;
+}
+.context-menu ul li.danger:hover {
+    background-color: #d9534f;
+    color: white;
+}
