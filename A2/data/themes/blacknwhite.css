@@ -1,0 +1,51 @@
+/* blacknwhite.css - Pure Dark */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --background: #000000;
+    --surface: #080808;
+    --text: #ffffff;
+    --primary: #ffffff;
+    --subtle-text: #aaaaaa;
+    --error: #ff3333;
+    --error-bg: rgba(255, 51, 51, 0.1);
+    --primary-bg-subtle: rgba(255, 255, 255, 0.04);
+}
+
+body {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+.button {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: #111111;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.message .user {
+    font-weight: 700;
+}
+
+a {
+    color: #ffffff;
+}
+
+a:hover {
+    color: #aaaaaa;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #222222;
+    border: 2px solid #000000;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}

@@ -1,0 +1,42 @@
+/* neon.css */
+:root {
+    --background: #000000;
+    --surface: #0d021a;
+    --text: #f0f0f0;
+    --primary: #00ffdd;
+    --subtle-text: #ff00ff;
+    --error: #ff3333;
+    --error-bg: rgba(255, 51, 51, 0.15);
+}
+body {
+    scrollbar-color: var(--primary) var(--surface);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #8affec;
+}
+.message .user {
+    text-shadow: 0 0 2px var(--subtle-text), 0 0 2px var(--subtle-text);
+}
+header h1 {
+    text-shadow: 0 0 3px var(--primary);
+}
+.button, .auth-container button, .message-form button {
+    text-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+.message-form input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 255, 221, 0.3);
+}
+.rot-chat-button {
+    color: var(--primary);
+    border-color: var(--primary);
+    text-shadow: 0 0 4px var(--primary);
+}
+.rot-chat-button:hover {
+    background-color: var(--primary);
+    color: var(--background);
+    text-shadow: none;
+}

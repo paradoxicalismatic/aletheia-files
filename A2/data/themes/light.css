@@ -1,0 +1,50 @@
+/* Better Visibility Theme - High Contrast */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --background: #fdfcff;    /* Off White */
+    --surface: #ffffff;       /* White */
+    --text: #111111;          /* Dark Gray */
+    --primary: #007bff;       /* Standard Blue */
+    --subtle-text: #5c5c5c;    /* Medium Gray */
+    --error: #dc3545;         /* Standard Red */
+    --error-bg: rgba(220, 53, 69, 0.1);
+    --primary-bg-subtle: rgba(0, 123, 255, 0.1);
+}
+
+body, button, input, select, textarea {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px; /* Increase letter spacing slightly */
+}
+
+input:focus, button:focus, select:focus, a:focus {
+    outline: 3px solid #0056b3 !important; /* Darker blue for focus outline */
+    outline-offset: 2px;
+}
+
+.button {
+    border-width: 2px;
+    font-weight: bold;
+    background-color: var(--primary-bg-subtle);
+    border: 1px solid rgba(0,0,0,0.1);
+    color: var(--primary);
+}
+
+.button:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.message .user {
+    font-weight: 700;
+}
+
+.message-form input:focus {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border: 2px solid var(--surface);
+}

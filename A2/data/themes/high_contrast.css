@@ -1,0 +1,145 @@
+/* high_contrast.css */
+
+/* --- Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+:root {
+    /* --- Ultra-High Contrast Palette --- */
+    --background: #000000;       /* Pure Black */
+    --surface: #ffffff;          /* Pure White */
+    --primary: #ffff00;          /* High-Vis Yellow */
+    --secondary: #00ffff;        /* High-Vis Cyan */
+    --text: #ffffff;             /* White Text on Black */
+    --text-inverse: #000000;     /* Black Text on White/Yellow */
+    --border: #ffffff;           /* Crisp White Borders */
+    --error: #ff0000;            /* Pure Red */
+    
+    --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4 {
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: 900;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 4px;
+}
+
+a {
+    color: var(--secondary);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+a:hover {
+    background-color: var(--secondary);
+    color: var(--text-inverse);
+}
+
+/* --- Components --- */
+.button, button {
+    background-color: var(--primary);
+    color: var(--text-inverse);
+    border: 3px solid var(--primary);
+    font-weight: 800;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 0; /* Sharp edges for clarity */
+    text-transform: uppercase;
+}
+
+.button:hover, button:hover {
+    background-color: var(--background);
+    color: var(--primary);
+    border: 3px solid var(--primary);
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    background-color: var(--background);
+    border: 2px solid var(--border);
+    color: var(--text);
+    padding: 12px;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: 3px solid var(--secondary);
+    border-color: var(--secondary);
+}
+
+/* --- Layout Elements --- */
+.message-wrapper {
+    border: 2px solid var(--border) !important;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: var(--background);
+}
+
+.reply-quote {
+    border-left: 5px solid var(--primary) !important;
+    background-color: #1a1a1a;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.time {
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+/* --- Dropdowns and Overlays --- */
+.dropdown-content {
+    background-color: var(--background);
+    border: 3px solid var(--border);
+}
+
+.dropdown-content a, 
+.dropdown-content button {
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+}
+
+.dropdown-content a:hover {
+    background-color: var(--primary);
+    color: var(--text-inverse);
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border: 2px solid var(--background);
+}
+
+/* --- Accessibility Focus State --- */
+*:focus {
+    outline: 4px solid var(--primary) !important;
+    outline-offset: 2px;
+}
+
+/* Settings Fixes */
+.settings-form .setting-wrapper {
+    border: 1px solid #333;
+    padding: 15px;
+    margin-bottom: 10px;
+}

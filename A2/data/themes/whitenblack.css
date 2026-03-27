@@ -1,0 +1,51 @@
+/* whitenblack.css - Pure Light */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --background: #ffffff;
+    --surface: #f5f5f5;
+    --text: #111111;
+    --primary: #000000;
+    --subtle-text: #444444;
+    --error: #cc0000;
+    --error-bg: rgba(200, 0, 0, 0.08);
+    --primary-bg-subtle: rgba(0, 0, 0, 0.07);
+}
+
+body {
+    background: #ffffff !important;
+    color: #111111 !important;
+}
+
+.button {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #eeeeee;
+    color: #000000;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.message .user {
+    font-weight: 700;
+}
+
+a {
+    color: #000000;
+}
+
+a:hover {
+    color: #555555;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #999999;
+    border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+    background: #eeeeee;
+}

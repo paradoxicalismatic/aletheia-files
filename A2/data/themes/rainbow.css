@@ -1,0 +1,121 @@
+/* Rainbow Theme (Subtle Glow) */
+
+/* --- Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/* --- Animation Definitions --- */
+@keyframes rainbow-border-glow {
+    0%   { border-color: #ff2400; box-shadow: 0 0 5px #ff2400; }
+    15%  { border-color: #e8b71d; box-shadow: 0 0 5px #e8b71d; }
+    30%  { border-color: #1de840; box-shadow: 0 0 5px #1de840; }
+    45%  { border-color: #1ddde8; box-shadow: 0 0 5px #1ddde8; }
+    60%  { border-color: #2b1de8; box-shadow: 0 0 5px #2b1de8; }
+    75%  { border-color: #dd00f3; box-shadow: 0 0 5px #dd00f3; }
+    100% { border-color: #ff2400; box-shadow: 0 0 5px #ff2400; }
+}
+
+@keyframes rainbow-shift {
+    0%   { background-position: 200% 0; }
+    100% { background-position: 0 0; }
+}
+
+:root {
+    /* --- Color Palette --- */
+    --background: #101010;      /* Near black */
+    --surface: #1e1e1e;        /* Very dark gray */
+    --primary: #ffffff;         /* White */
+    --secondary: #888888;       /* Medium gray */
+    --text: #e0e0e0;           /* Light gray */
+    --subtle-text: #777777;     /* Darker gray */
+    --error: #ff5555;           /* Bright red */
+
+    /* --- Font --- */
+    --font-family: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background);
+}
+
+/* --- Component Styling --- */
+.button, button {
+    background-color: var(--surface);
+    color: var(--primary);
+    border: 1px solid var(--secondary);
+    transition: all 0.2s ease;
+}
+
+.button:hover, button:hover {
+    color: #000;
+    background-color: #fff;
+    border-color: #fff;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    font-family: var(--font-family);
+    background-color: var(--background);
+    border: 1px solid var(--surface);
+    color: var(--text);
+    caret-color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    outline: none;
+    border: 1px solid;
+    animation: rainbow-border-glow 4s linear infinite;
+}
+
+.dropdown-content {
+    background-color: var(--surface);
+    border: 1px solid #333;
+}
+
+.dropdown-content a,
+.dropdown-content button,
+.dropdown-content label {
+    color: var(--text);
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover,
+.dropdown-content label:hover {
+    background-color: var(--primary);
+    color: #000;
+}
+
+.message-wrapper {
+    position: relative;
+    border-bottom: none !important; /* Remove the old border */
+    padding-bottom: 0.5rem !important; /* Ensure space for the line */
+}
+
+.message-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #ff2400, #e8b71d, #1de840, #1ddde8, #2b1de8, #dd00f3, #ff2400);
+    background-size: 200% 100%;
+    animation: rainbow-shift 8s linear infinite;
+}
+
+.reply-quote {
+    border-left: 3px solid var(--secondary) !important;
+    background-color: var(--background);
+}
+
+.time {
+    color: var(--subtle-text);
+}
+
+h1, h2 {
+    color: var(--primary);
+}
